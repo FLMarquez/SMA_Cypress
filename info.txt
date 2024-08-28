@@ -19,3 +19,9 @@ C:\Users\Lmarquez\AppData\Roaming\Code\User\snippets
 Para llegar. Ctrl + P
 Colocar snippets
 Accede al archivo
+
+
+
+
+############################################################
+npx cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497

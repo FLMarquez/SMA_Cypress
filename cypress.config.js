@@ -15,6 +15,7 @@ module.exports = defineConfig({
   pageLoadTimeout: 19000,
   videoCompression: false,
   trashAssetsBeforeRuns: false,
+  projectId: "z9sb28",
   e2e: {
     setupNodeEvents(on, config) {
       // Registrar las tareas
