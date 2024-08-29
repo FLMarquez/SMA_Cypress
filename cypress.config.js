@@ -54,7 +54,7 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://test.elinpar.com',
     env: {
-      downloadDirectory: 'C:\Users\Lmarquez\Desktop\Escritorio PC Lucas\Cypress_SMA\cypress\downloads',
+      downloadDirectory: 'C:\\Users\\Lmarquez\\Downloads\\aadeudacontadosellados2_impl.pdf',
     }
   }
   

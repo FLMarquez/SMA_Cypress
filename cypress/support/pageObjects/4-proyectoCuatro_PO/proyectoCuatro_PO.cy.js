@@ -25,7 +25,7 @@ class ProyectoCuatro_Po {
 
   SeccionDos(numeroActa, t) {
     let tiempo = t;
-    cy.xpath("//input[contains(@id,'MENUTOGGLE_MPAGE')]").should("be.visible", { timeout: 5000 }).click({ force: true });
+    cy.xpath("//input[contains(@id,'MENUTOGGLE_MPAGE')]").invoke('show').should("be.visible", { timeout: 5000 }).click({ force: true });
     cy.wait(tiempo);
     cy.xpath("//span[contains(.,'Emisión Deuda')]").should("be.visible", { timeout: 5000 }).click({ force: true });
     cy.wait(tiempo);
@@ -51,9 +51,9 @@ class ProyectoCuatro_Po {
 
     cy.wait(tiempo);
 
-   cy.xpath("//a[@href='#'][contains(.,'AU')]").should('be.visible').click({force: true})
+   cy.xpath("//a[@href='#'][contains(.,'AU')]").should('be.visible').invoke('show').click({force: true})
    cy.wait(tiempo)
-   cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible').click({force: true})
+   cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible').invoke('show').click({force: true})
    cy.wait(tiempo)
     
     

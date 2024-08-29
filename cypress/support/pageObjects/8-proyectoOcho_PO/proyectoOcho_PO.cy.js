@@ -121,7 +121,7 @@ class ProyectoOcho_Po{
       // Nuevo método para llenar el código de barras
     llenarCodigoDeBarras(codigo,t) {
       let tiempo = t;
-      cy.xpath("//input[contains(@id,'vCODIGOAUTORIZACION')]").should('not.be.disabled').should('be.visible').type(clave, {force: true});
+      cy.get('#vCDPCODIGOBARRA').type(codigo);
       cy.wait(tiempo);
       cy.xpath("//input[contains(@id,'CODBARRA')]").should('be.visible').click({force: true});
       cy.wait(tiempo);
