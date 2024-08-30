@@ -3,7 +3,6 @@ const { downloadFile } = require('cypress-downloadfile/lib/addPlugin');
 const pdfParse = require('pdf-parse');
 const fs = require('fs');
 
-
 module.exports = defineConfig({
   video: true,
   videosFolder: "cypress/videos",
@@ -31,34 +30,38 @@ module.exports = defineConfig({
 
       on('before:browser:launch', (browser = {}, launchOptions) => {
         if (browser.name === 'chrome') {
+          launchOptions.args.push('--disable-gpu');
+          launchOptions.args.push('--disable-software-rasterizer');
+          launchOptions.args.push('--disable-dev-shm-usage');
+          launchOptions.args.push('--no-sandbox');
+          launchOptions.args.push('--headless'); // Asegúrate de estar en modo headless
+
           launchOptions.preferences.default['download'] = {
-            prompt_for_download: false, // Evitar el diálogo de descarga
-            default_directory: config.env.downloadDirectory, // Directorio de descarga
-            directory_upgrade: true // Asegurar que la carpeta existe
+            prompt_for_download: false,
+            default_directory: config.env.downloadDirectory,
+            directory_upgrade: true
           };
           launchOptions.preferences.default['plugins'] = {
-            always_open_pdf_externally: true, // Abrir siempre los PDFs externamente
-            plugins_disabled: ['Chrome PDF Viewer'] // Deshabilitar el visor de PDF de Chrome
+            always_open_pdf_externally: true,
+            plugins_disabled: ['Chrome PDF Viewer']
           };
         } else if (browser.name === 'firefox') {
-          launchOptions.preferences['browser.download.folderList'] = 2; // Usar una carpeta específica
-          launchOptions.preferences['browser.download.dir'] = config.env.downloadDirectory; // Carpeta de descarga
-          launchOptions.preferences['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf'; // Descargar automáticamente PDFs
-          launchOptions.preferences['pdfjs.disabled'] = true; // Desactivar el visor de PDF integrado de Firefox
+          launchOptions.preferences['browser.download.folderList'] = 2;
+          launchOptions.preferences['browser.download.dir'] = config.env.downloadDirectory;
+          launchOptions.preferences['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf';
+          launchOptions.preferences['pdfjs.disabled'] = true;
         }
         return launchOptions;
       });
-      
-
-      return config; // Asegúrate de devolver la configuración
+      return config;
     },
     baseUrl: 'https://test.elinpar.com',
     env: {
       downloadDirectory: 'C:\\Users\\Lmarquez\\Downloads\\aadeudacontadosellados2_impl.pdf',
     }
   }
-  
 });
+
 
 
 
