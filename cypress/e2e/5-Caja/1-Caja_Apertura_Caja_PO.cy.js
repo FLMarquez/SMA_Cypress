@@ -26,7 +26,7 @@ it('Caja_Apertura_Caja', () => {
     
    
     
-    const pdfPath = 'C:/Users/Lmarquez/Desktop/Escritorio PC Lucas/Cypress_SMA/cypress/downloads/aadeudacontadosellados2_impl.pdf'; 
+    const pdfPath = 'C:/Users/Lmarquez/Downloads/aadeudacontadosellados2_impl.pdf'; 
 
         cy.readPDF(pdfPath).then((text) => {
             const dato = extraerDato(text); 

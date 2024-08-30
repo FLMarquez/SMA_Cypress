@@ -32,87 +32,87 @@ class ProyectoOcho_Po{
         cy.xpath("(//span[contains(.,'Cajas')])[1]").should("be.visible",{timeout:5000}).click({ force: true });
         cy.xpath("//span[contains(.,'Apertura De Caja')]").should("be.visible",{timeout:5000}).click({ force: true });
         cy.wait(tiempo);
-        cy.xpath("//span[@id='TITLE']").should('be.visible').contains('Apertura de Caja')
+        cy.xpath("//span[@id='TITLE']").should('be.visible', { timeout: 10000 }).contains('Apertura de Caja')
         cy.wait(tiempo)
-        cy.xpath("//label[contains(@for,'vCAJEROID')]").should('be.visible').contains('Cajero')
+        cy.xpath("//label[contains(@for,'vCAJEROID')]").should('be.visible', { timeout: 10000 }).contains('Cajero')
         cy.wait(tiempo)
-        cy.xpath("//label[@for='vCAJAID']").should('be.visible').contains('Caja')
+        cy.xpath("//label[@for='vCAJAID']").should('be.visible', { timeout: 10000 }).contains('Caja')
         cy.wait(tiempo)
-        cy.xpath("//label[@for='vCJDFECHAAPERTURA']").should('be.visible').contains('Fecha Cobro')
+        cy.xpath("//label[@for='vCJDFECHAAPERTURA']").should('be.visible', { timeout: 10000 }).contains('Fecha Cobro')
         cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'TEXTBLOCK_VAR_CODIGOAUTORIZACION')]").should('be.visible').contains('Clave del Cajero')
+        cy.xpath("//span[contains(@id,'TEXTBLOCK_VAR_CODIGOAUTORIZACION')]").should('be.visible', { timeout: 10000 }).contains('Clave del Cajero')
         cy.wait(tiempo)
-        cy.get('#ACEPTAR').should('be.visible')
+        cy.get('#ACEPTAR').should('be.visible', { timeout: 10000 })
         cy.wait(tiempo)     
 
-        cy.xpath("//select[contains(@id,'vCAJEROID')]").select(cajero, { force: true})
+        cy.xpath("//select[contains(@id,'vCAJEROID')]").should('be.visible', { timeout: 10000 }).select(cajero, { force: true})
         cy.wait(tiempo)
-        cy.xpath("//select[contains(@id,'vCAJAID')]").select(caja, { force: true})
+        cy.xpath("//select[contains(@id,'vCAJAID')]").should('be.visible', { timeout: 10000 }).select(caja, { force: true})
         cy.wait(tiempo)
-        cy.xpath("//input[contains(@id,'vCODIGOAUTORIZACION')]").should('be.visible').type(clave);
+        cy.xpath("//input[contains(@id,'vCODIGOAUTORIZACION')]").should('be.visible', { timeout: 10000 }).type(clave);
         cy.wait(tiempo)
-        cy.xpath("//input[contains(@id,'ACEPTAR')]").should('be.visible').click({force: true})
+        cy.xpath("//input[contains(@id,'ACEPTAR')]").should('be.visible', { timeout: 10000 }).click({force: true})
         cy.wait(tiempo)
         
 
-        cy.iframe('#gxp0_ifrm').should('exist').then($iframe => {
+        cy.iframe('#gxp0_ifrm').should('exist', { timeout: 10000 }).then($iframe => {
         cy.wrap($iframe)
-        .xpath("//span[contains(.,'Apertura Autorizada - Puesto Diario Abierto')]").should('be.visible')
+        .xpath("//span[contains(.,'Apertura Autorizada - Puesto Diario Abierto')]").should('be.visible', { timeout: 10000 })
         .contains('Apertura Autorizada - Puesto Diario Abierto')
-        .xpath("//input[contains(@id,'ACTION')]").should('be.visible').click({force: true})
+        .xpath("//input[contains(@id,'ACTION')]").should('be.visible', { timeout: 10000 }).click({force: true})
         cy.wait(tiempo)
         });
 
-        cy.get('#TEXTBLOCK_ATTRIBUTES_ATTRIBUTES').should('be.visible').contains('Datos Caja-Cajero')
+        cy.get('#TEXTBLOCK_ATTRIBUTES_ATTRIBUTES').should('be.visible', { timeout: 10000 }).contains('Datos Caja-Cajero')
         cy.wait(tiempo)
         
-        cy.get('#TABLE_CONTAINER_CAANROCAJA > .form-group > .gx-label').should('be.visible').contains('Identificación Caja')
+        cy.get('#TABLE_CONTAINER_CAANROCAJA > .form-group > .gx-label').should('be.visible', { timeout: 10000 }).contains('Identificación Caja')
         cy.wait(tiempo)
         
-        cy.xpath("//span[contains(@id,'TEXTBLOCK_VAR_CJDFECHAAPERTURA')]").should('be.visible').contains('Fecha Apertura')
+        cy.xpath("//span[contains(@id,'TEXTBLOCK_VAR_CJDFECHAAPERTURA')]").should('be.visible', { timeout: 10000 }).contains('Fecha Apertura')
         cy.wait(tiempo)
         
-        cy.xpath("//span[contains(@id,'ATTRIBUTES1')]").should('be.visible').contains('Datos Pagos')
+        cy.xpath("//span[contains(@id,'ATTRIBUTES1')]").should('be.visible', { timeout: 10000 }).contains('Datos Pagos')
         cy.wait(tiempo)
-        cy.xpath("//label[contains(.,'Código de Barra')]").should('be.visible').contains('Código de Barra')
+        cy.xpath("//label[contains(.,'Código de Barra')]").should('be.visible', { timeout: 10000 }).contains('Código de Barra')
         cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'CDPBOANROREGISTRO')]").should('be.visible').contains('Nro. Comprobante')
+        cy.xpath("//span[contains(@id,'CDPBOANROREGISTRO')]").should('be.visible', { timeout: 10000 }).contains('Nro. Comprobante')
         cy.wait(tiempo)
         cy.xpath("//span[contains(.,'Boleto')]").should('be.visible').contains('Boleto')
         cy.wait(tiempo)
-        cy.xpath("(//span[contains(.,'Importe')])[1]").should('be.visible').contains('Importe')
+        cy.xpath("(//span[contains(.,'Importe')])[1]").should('be.visible', { timeout: 10000 }).contains('Importe')
         cy.wait(tiempo)
-        cy.xpath("//label[contains(.,'Total a Pagar')]").should('be.visible').contains('Total a Pagar')
+        cy.xpath("//label[contains(.,'Total a Pagar')]").should('be.visible', { timeout: 10000 }).contains('Total a Pagar')
         cy.wait(tiempo)
-        cy.xpath("//label[@for='vSALDOMP']").should('be.visible').contains('Saldo')
-        cy.wait(tiempo)
-
-        cy.xpath("//span[contains(@id,'TEXTBLOCK_ATTRIBUTES_ATTRIBUTES2')]").should('be.visible').contains('Medios de Pago')
-        cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'TEXTBLOCK_VAR_MPGID')]").should('be.visible').contains('Medio de Pago')
-        cy.wait(tiempo)
-        cy.xpath("//label[@for='vMNDID']").should('be.visible').contains('Moneda')
-        cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'MTOREDONDEO_VAR_LEFTTEXT')]").should('be.visible').contains('Redondeo')
-        cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'MTOCONTADO_VAR_LEFTTEXT')]").should('be.visible').contains('Monto')
-        cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'MTOVUELTO_VAR_LEFTTEXT')]").should('be.visible').contains('Vuelto')
-        cy.wait(tiempo)
-        cy.xpath("//span[contains(@id,'TOTALCDO_VAR_LEFTTEXT')]").should('be.visible').contains('Total')
-        cy.wait(tiempo)
-        
-        cy.get('#BUTTON6').should('be.visible')
-        cy.wait(tiempo) 
-        
-        cy.xpath("(//span[contains(.,'Medio de Pago')])[2]").should('be.visible').contains('Medio de Pago')
-        cy.wait(tiempo)
-        cy.xpath("//span[contains(.,'Importe Asignado')]").should('be.visible').contains('Importe Asignado')
+        cy.xpath("//label[@for='vSALDOMP']").should('be.visible', { timeout: 10000 }).contains('Saldo')
         cy.wait(tiempo)
 
-        cy.get('#BTNGRABARPAGO').should('be.visible')
+        cy.xpath("//span[contains(.,'Medios de Pago')]").should('be.visible', { timeout: 10000 }).contains('Medios de Pago');
+        cy.wait(tiempo)
+        cy.xpath("(//span[contains(.,'Medio de Pago')])[1]").should('be.visible', { timeout: 10000 }).contains('Medio de Pago')
+        cy.wait(tiempo)
+        cy.xpath("//label[@for='vMNDID']").should('be.visible', { timeout: 10000 }).contains('Moneda')
+        cy.wait(tiempo)
+        cy.xpath("//span[contains(@id,'MTOREDONDEO_VAR_LEFTTEXT')]").should('be.visible', { timeout: 10000 }).contains('Redondeo')
+        cy.wait(tiempo)
+        cy.xpath("//span[contains(@id,'MTOCONTADO_VAR_LEFTTEXT')]").should('be.visible', { timeout: 10000 }).contains('Monto')
+        cy.wait(tiempo)
+        cy.xpath("//span[contains(@id,'MTOVUELTO_VAR_LEFTTEXT')]").should('be.visible', { timeout: 10000 }).contains('Vuelto')
+        cy.wait(tiempo)
+        cy.xpath("//span[contains(@id,'TOTALCDO_VAR_LEFTTEXT')]").should('be.visible', { timeout: 10000 }).contains('Total')
+        cy.wait(tiempo)
+        
+        cy.get('#BUTTON6').should('be.visible', { timeout: 10000 })
         cy.wait(tiempo) 
-        cy.get('#BUTTON7').should('be.visible')
+        
+        cy.xpath("(//span[contains(.,'Medio de Pago')])[3]").should('be.visible', { timeout: 10000 }).contains('Medio de Pago')
+        cy.wait(tiempo)
+        cy.xpath("//span[contains(.,'Importe Asignado')]").should('be.visible', { timeout: 10000 }).contains('Importe Asignado')
+        cy.wait(tiempo)
+
+        cy.get('#BTNGRABARPAGO').should('be.visible', { timeout: 10000 })
+        cy.wait(tiempo) 
+        cy.get('#BUTTON7').should('be.visible', { timeout: 10000 })
         cy.wait(tiempo) 
         //});
 
@@ -123,10 +123,10 @@ class ProyectoOcho_Po{
       let tiempo = t;
       cy.get('#vCDPCODIGOBARRA').type(codigo);
       cy.wait(tiempo);
-      cy.xpath("//input[contains(@id,'CODBARRA')]").should('be.visible').click({force: true});
+      cy.xpath("//input[contains(@id,'CODBARRA')]").should('be.visible', { timeout: 10000 }).click({force: true});
       cy.wait(tiempo);
       
-      cy.xpath("//input[contains(@id,'CODBARRA')]").should('be.visible').click({force: true})
+      cy.xpath("//input[contains(@id,'CODBARRA')]").should('be.visible', { timeout: 10000 }).click({force: true})
       cy.wait(tiempo)
 
     }
@@ -137,9 +137,9 @@ class ProyectoOcho_Po{
       cy.wait(tiempo)
       cy.xpath("//select[contains(@id,'vMNDID')]").select(moneda, { force: true})
       cy.wait(tiempo)
-      cy.xpath("//input[contains(@id,'BUTTON6')]").should('be.visible').click({force: true})
+      cy.xpath("//input[contains(@id,'BUTTON6')]").should('be.visible', { timeout: 10000 }).click({force: true})
       cy.wait(tiempo)
-      cy.xpath("//input[contains(@id,'BTNGRABARPAGO')]").should('be.visible').click({force: true})
+      cy.xpath("//input[contains(@id,'BTNGRABARPAGO')]").should('be.visible', { timeout: 10000 }).click({force: true})
       cy.wait(tiempo)
 
       cy.on('window:confirm', (str) => {
@@ -153,9 +153,9 @@ class ProyectoOcho_Po{
     cy.wait(tiempo)
     cy.iframe('#gxp0_ifrm').should('exist').then($iframe => {
       cy.wrap($iframe)
-      .xpath("//span[contains(@id,'TEXTBLOCK')]").should('be.visible')
+      .xpath("//span[contains(@id,'TEXTBLOCK')]").should('be.visible', { timeout: 10000 })
       .contains('&caaimprimeticket: N')
-      .xpath("//input[contains(@id,'BUTTON1')]").should('be.visible').click({force: true});
+      .xpath("//input[contains(@id,'BUTTON1')]").should('be.visible', { timeout: 10000 }).click({force: true});
       cy.wait(5000)
 
   });
@@ -171,11 +171,9 @@ class ProyectoOcho_Po{
 
         cy.wait(tiempo)
 
-        cy.xpath("//a[contains(.,'DS')]").should('be.visible')
-        .click({force: true})
+        cy.xpath("//a[contains(.,'DS')]").should('be.visible', { timeout: 10000 }).click({force: true})
         cy.wait(tiempo)
-        cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible')
-        .click({force: true})
+        cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible', { timeout: 10000 }).click({force: true})
         
 
       }

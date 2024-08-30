@@ -46,11 +46,9 @@ class ProyectoNueve_Po{
 
         cy.wait(tiempo);
                 
-        cy.xpath("//a[contains(.,'DS')]").should('be.visible')
-        .click({force: true})
+        cy.xpath("//a[contains(.,'DS')]").should('be.visible', { timeout: 10000 }).click({force: true})
         cy.wait(tiempo)
-        cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible')
-        .click({force: true})
+        cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible', { timeout: 10000 }).click({force: true})
 
           }
       

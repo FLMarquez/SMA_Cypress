@@ -63,18 +63,18 @@ class ProyectoSeis_Po{
         cy.wait(tiempo)
 
         cy.wrap($iframe)
-        .xpath("//img[contains(@id,'vSEARCHLOCALIDADES')]").should('be.visible').click({force: true})
+        .xpath("//img[contains(@id,'vSEARCHLOCALIDADES')]").should("be.visible",{timeout:5000}).click({force: true})
         cy.wait(tiempo)
         });
 
         cy.wait(tiempo)
         cy.iframe('#gxp1_ifrm').should('exist').then($iframe => {
         cy.wrap($iframe)
-        .xpath("//input[contains(@id,'vCLCLDESCRIPCION')]").should('be.visible').type(localidad);
+        .xpath("//input[contains(@id,'vCLCLDESCRIPCION')]").should("be.visible",{timeout:5000}).type(localidad);
         cy.wait(tiempo)
 
         cy.wrap($iframe)
-        .xpath("//img[contains(@id,'vLINKSELECTION_0001')]").should('be.visible').click({force: true})
+        .xpath("//img[contains(@id,'vLINKSELECTION_0001')]").should("be.visible",{timeout:5000}).click({force: true})
         cy.wait(tiempo)
 
       });

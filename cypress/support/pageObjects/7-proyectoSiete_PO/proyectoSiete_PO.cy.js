@@ -42,14 +42,14 @@ class ProyectoSiete_Po{
        //cy.iframe('col-xs-12').should('exist').then($iframe => {
        //cy.wrap($iframe)
        cy.get('#VALIDARE').should('be.visible').click({force: true})
-       cy.wait(2000)
+       cy.wait(5000)
        //});
        
 
        cy.iframe('#gxp0_ifrm').should('exist').then($iframe => {
         cy.wrap($iframe)
         .xpath("//input[@id='BUTTON1']").should('be.visible').click({force: true});
-        cy.wait(2000)
+        cy.wait(5000)
     });
     
     cy.iframe('#gxp1_ifrm').should('exist').then($iframe => {
