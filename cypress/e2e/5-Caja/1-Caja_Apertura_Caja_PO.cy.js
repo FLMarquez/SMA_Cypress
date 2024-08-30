@@ -26,7 +26,7 @@ it('Caja_Apertura_Caja', () => {
     
    
     
-    const pdfPath = 'C:/ProgramData/Jenkins/.jenkins/workspace/SMA_Cypress/cypress/downloads/aadeudacontadosellados2_impl.pdf'; 
+    const pdfPath = 'C:/ProgramData/Jenkins/.jenkins/workspace/SMA_Cypress/aadeudacontadosellados2_impl.pdf'; 
 
         cy.readPDF(pdfPath).then((text) => {
             const dato = extraerDato(text); 
