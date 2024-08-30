@@ -3,7 +3,7 @@ const path = require('path'); // Asegúrate de tener esta línea al principio
 describe('Test de extracción de texto de PDF', () => {
     it('Extrae texto de un archivo PDF y valida', () => {
         // Usa la ruta absoluta directamente o asegúrate de que downloadDirectory esté configurado
-        const pdfFilePath = 'C:\\Users\\Lmarquez\\Downloads\\aadeudacontadosellados2_impl.pdf';
+        const pdfFilePath = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\cypress\\downloads\\aadeudacontadosellados2_impl.pdf';
 
         cy.task('parsePdf', { filePath: pdfFilePath })
         .then((extractedText) => {
