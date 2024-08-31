@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress');
 const { downloadFile } = require('cypress-downloadfile/lib/addPlugin');
 const pdfParse = require('pdf-parse');
 const fs = require('fs');
+const path = require('path');
 
 module.exports = defineConfig({
   video: true,
@@ -36,41 +37,60 @@ module.exports = defineConfig({
           launchOptions.args.push('--no-sandbox');
           launchOptions.args.push('--headless'); // Asegúrate de estar en modo headless
 
-          launchOptions.preferences.default['download'] = {
-            prompt_for_download: false,
-            default_directory: config.env.downloadDirectory,
-            directory_upgrade: true
-          };
-          launchOptions.preferences.default['plugins'] = {
-            always_open_pdf_externally: true,
-            plugins_disabled: ['Chrome PDF Viewer']
+          launchOptions.preferences = {
+            default: {
+              'download': {
+                prompt_for_download: false,
+                default_directory: config.env.downloadDirectory,
+                directory_upgrade: true
+              },
+              'plugins': {
+                always_open_pdf_externally: true,
+                plugins_disabled: ['Chrome PDF Viewer']
+              }
+            }
           };
         } else if (browser.name === 'firefox') {
-          launchOptions.preferences['browser.download.folderList'] = 2;
-          launchOptions.preferences['browser.download.dir'] = config.env.downloadDirectory;
-          launchOptions.preferences['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf';
-          launchOptions.preferences['pdfjs.disabled'] = true;
+          launchOptions.preferences = {
+            'browser.download.folderList': 2,
+            'browser.download.dir': config.env.downloadDirectory,
+            'browser.helperApps.neverAsk.saveToDisk': 'application/pdf',
+            'pdfjs.disabled': true
+          };
         } else if (browser.name === 'electron') {
-          // Electron no tiene `preferences`, usar opciones específicas de Electron
-          launchOptions.preferences = launchOptions.preferences || {};
-          launchOptions.preferences.default = launchOptions.preferences.default || {};
-          launchOptions.preferences.default['download'] = {
-            prompt_for_download: false,
-            default_directory: config.env.downloadDirectory,
-            directory_upgrade: true
+          // Electron config: Make sure Electron is configured correctly for downloads
+          // Electron may not need additional arguments for downloads, just ensure the directory is set correctly
+          launchOptions.preferences = {
+            default: {
+              'download': {
+                prompt_for_download: false,
+                default_directory: config.env.downloadDirectory,
+                directory_upgrade: true
+              }
+            }
           };
           // No es necesario agregar argumentos como en Chrome y Firefox
         }
         return launchOptions;
       });
+
+      // Asegúrate de que la carpeta de descargas existe
+      on('before:run', () => {
+        const downloadDirectory = path.resolve(config.env.downloadDirectory);
+        if (!fs.existsSync(downloadDirectory)) {
+          fs.mkdirSync(downloadDirectory, { recursive: true });
+        }
+      });
+
       return config;
     },
     baseUrl: 'https://test.elinpar.com',
     env: {
-      downloadDirectory: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress',
+      downloadDirectory: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\downloads',
     }
   }
 });
+
 
 
 
