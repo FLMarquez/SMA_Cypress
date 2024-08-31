@@ -50,6 +50,16 @@ module.exports = defineConfig({
           launchOptions.preferences['browser.download.dir'] = config.env.downloadDirectory;
           launchOptions.preferences['browser.helperApps.neverAsk.saveToDisk'] = 'application/pdf';
           launchOptions.preferences['pdfjs.disabled'] = true;
+        } else if (browser.name === 'electron') {
+          // Electron no tiene `preferences`, usar opciones específicas de Electron
+          launchOptions.preferences = launchOptions.preferences || {};
+          launchOptions.preferences.default = launchOptions.preferences.default || {};
+          launchOptions.preferences.default['download'] = {
+            prompt_for_download: false,
+            default_directory: config.env.downloadDirectory,
+            directory_upgrade: true
+          };
+          // No es necesario agregar argumentos como en Chrome y Firefox
         }
         return launchOptions;
       });
@@ -57,10 +67,11 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://test.elinpar.com',
     env: {
-      downloadDirectory: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\aadeudacontadosellados2_impl.pdf',
+      downloadDirectory: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress',
     }
   }
 });
+
 
 
 
