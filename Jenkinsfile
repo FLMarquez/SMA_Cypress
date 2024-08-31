@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    tools {nodejs "node"}
+    tools { nodejs "node" }
 
     stages {
 
@@ -14,9 +14,9 @@ pipeline {
                     steps {
                         git url: 'https://github.com/FLMarquez/SMA_Cypress.git'
                         bat 'npm install'
-                        bat 'npm update'                       
-                        bat 'npx cypress run cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497  --parallel'
-                    
+                        bat 'npm update'
+                        bat 'mkdir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\cypress\\downloads || echo "Directory already exists"'
+                        bat 'npx cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
                     }
                 }
 
@@ -27,20 +27,12 @@ pipeline {
                     steps {
                         git url: 'https://github.com/FLMarquez/SMA_Cypress.git'
                         bat 'npm install'
-                        bat 'npm update'                       
-                        bat 'npx cypress run cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497  --parallel'
-                    
+                        bat 'npm update'
+                        bat 'mkdir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\cypress\\downloads || echo "Directory already exists"'
+                        bat 'npx cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
                     }
                 }
-                         
-
-                  
-                  
             }
-
-             
         }
-
     }
-            
 }
