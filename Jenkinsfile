@@ -30,7 +30,8 @@ pipeline {
                         bat 'npm update'
                         bat 'mkdir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\cypress\\downloads || echo "Directory already exists"'
                         // Ejecución en Firefox
-                        bat 'npx cypress run --browser firefox --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
+                       bat 'npx cypress run --browser firefox --headless --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
+
                     }
                 }
             }
