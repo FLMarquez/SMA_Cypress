@@ -15,14 +15,14 @@ class ProyectoUno_Po{
        //ESCRIBIR EL USUARIO Y CONTRASEÑA EN EL ACCESO A USUARIOS 
        //solo se intentará escribir en los campos #Usuario y #Contraseña si email y password no son cadenas vacías      
        if (usuario !== "") {
-        cy.xpath("//input[contains(@id,'vUSERNAME')]").should("be.visible",{timeout:5000}).type(usuario);
+        cy.get('#vUSERNAME').should("be.visible",{timeout:5000}).type(usuario);
         }
         if (contrasena !== "") {
-        cy.xpath("//input[contains(@id,'vUSERPASSWORD')]").should("be.visible",{timeout:5000}).type(contrasena);
+        cy.get('#vUSERPASSWORD').should("be.visible",{timeout:5000}).type(contrasena);
         }
         cy.wait(tiempo);
         //HACER CLIC EN EL BOTÓN INICIAR SESIÓN
-        cy.xpath("//input[contains(@id,'LOGIN')]").should("be.visible",{timeout:5000}).click() 
+        cy.get('#LOGIN').should("be.visible",{timeout:5000}).click() 
         cy.wait(tiempo)    
 
     }

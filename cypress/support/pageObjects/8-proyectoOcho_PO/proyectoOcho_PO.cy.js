@@ -13,19 +13,29 @@ class ProyectoOcho_Po{
       SeccionUno(usuario, contrasena, t) {
         let tiempo = t;
         if (usuario !== "") {
-          cy.xpath("//input[contains(@id,'vUSERNAME')]").should("be.visible", { timeout: 5000 }).type(usuario);
+          cy.xpath("//input[contains(@id,'vUSERNAME')]").should("be.visible").type(usuario);
         }
         if (contrasena !== "") {
-          cy.xpath("//input[contains(@id,'vUSERPASSWORD')]").should("be.visible", { timeout: 5000 }).type(contrasena);
+          cy.xpath("//input[contains(@id,'vUSERPASSWORD')]").should("be.visible").type(contrasena);
         }
-        cy.wait(tiempo);
-        cy.xpath("//input[contains(@id,'LOGIN')]").should("be.visible", { timeout: 5000 }).click();
-        cy.wait(tiempo);
+        
+        cy.xpath("//input[contains(@id,'LOGIN')]").should("be.visible").click();
+        
       }
     
       SeccionDos(cajero,caja,clave, t) {
         let tiempo = t;
         
+        cy.get('#MENUTOGGLE_MPAGE').should("be.visible").click({ force: true });
+
+
+
+
+
+
+
+
+
        
         // Navegación por el menú
         cy.xpath("//input[contains(@id,'MENUTOGGLE_MPAGE')]").should("be.visible",{timeout:5000}).click({ force: true });

@@ -30,6 +30,8 @@ module.exports = defineConfig({
       });
 
       on('before:browser:launch', (browser = {}, launchOptions) => {
+        const downloadDir = path.resolve(config.env.downloadDirectory);
+
         if (browser.name === 'chrome') {
           launchOptions.args.push('--disable-gpu');
           launchOptions.args.push('--disable-software-rasterizer');
@@ -38,45 +40,32 @@ module.exports = defineConfig({
           launchOptions.args.push('--headless'); // Asegúrate de estar en modo headless
 
           launchOptions.preferences = {
-            default: {
-              'download': {
-                prompt_for_download: false,
-                default_directory: config.env.downloadDirectory,
-                directory_upgrade: true
-              },
-              'plugins': {
-                always_open_pdf_externally: true,
-                plugins_disabled: ['Chrome PDF Viewer']
-              }
-            }
+            'download.default_directory': downloadDir,
+            'download.prompt_for_download': false,
+            'plugins.always_open_pdf_externally': true,
+            'plugins.plugins_disabled': ['Chrome PDF Viewer']
           };
         } else if (browser.name === 'firefox') {
           launchOptions.preferences = {
             'browser.download.folderList': 2,
-            'browser.download.dir': config.env.downloadDirectory,
+            'browser.download.dir': downloadDir,
             'browser.helperApps.neverAsk.saveToDisk': 'application/pdf',
             'pdfjs.disabled': true
           };
         } else if (browser.name === 'electron') {
-          // Electron config: Make sure Electron is configured correctly for downloads
-          // Electron may not need additional arguments for downloads, just ensure the directory is set correctly
           launchOptions.preferences = {
-            default: {
-              'download': {
-                prompt_for_download: false,
-                default_directory: config.env.downloadDirectory,
-                directory_upgrade: true
-              }
-            }
+            'download.default_directory': downloadDir,
+            'download.prompt_for_download': false,
           };
-          // No es necesario agregar argumentos como en Chrome y Firefox
         }
+
         return launchOptions;
       });
 
-      // Asegúrate de que la carpeta de descargas existe
+      // Asegúrate de que la carpeta de descargas exista
       on('before:run', () => {
         const downloadDirectory = path.resolve(config.env.downloadDirectory);
+        console.log('Download directory:', downloadDirectory); // Verificar la ruta
         if (!fs.existsSync(downloadDirectory)) {
           fs.mkdirSync(downloadDirectory, { recursive: true });
         }
@@ -86,17 +75,7 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://test.elinpar.com',
     env: {
-      downloadDirectory: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\downloads',
+      downloadDirectory: 'C:\\Users\\Lmarquez\\Downloads',
     }
   }
 });
-
-
-
-
-
-
-
-
-
-

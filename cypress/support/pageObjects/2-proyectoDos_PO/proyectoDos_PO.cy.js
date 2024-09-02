@@ -9,30 +9,73 @@ class ProyectoDos_Po{
         });
       }
     
-      SeccionUno(usuario, contrasena, t) {
-        let tiempo = t;
-        if (usuario !== "") {
-          cy.xpath("//input[contains(@id,'vUSERNAME')]").should("be.visible", { timeout: 5000 }).type(usuario);
+      SeccionUno(usuario,contrasena,t){
+        let tiempo=t
+       //ESCRIBIR EL USUARIO Y CONTRASEÑA EN EL ACCESO A USUARIOS 
+       //solo se intentará escribir en los campos #Usuario y #Contraseña si email y password no son cadenas vacías      
+       if (usuario !== "") {
+        cy.get('#vUSERNAME').should("be.visible").type(usuario);
         }
         if (contrasena !== "") {
-          cy.xpath("//input[contains(@id,'vUSERPASSWORD')]").should("be.visible", { timeout: 5000 }).type(contrasena);
+        cy.get('#vUSERPASSWORD').should("be.visible").type(contrasena);
         }
-        cy.wait(tiempo);
-        cy.xpath("//input[contains(@id,'LOGIN')]").should("be.visible", { timeout: 5000 }).click();
-        cy.wait(tiempo);
-      }
+        
+        //HACER CLIC EN EL BOTÓN INICIAR SESIÓN
+        cy.get('#LOGIN').should("be.visible").click() 
+         
+
+    }
     
       SeccionDos(cuit, t) {
         let tiempo = t;
-       
+        
         // Navegación por el menú
-        cy.xpath("//input[contains(@id,'MENUTOGGLE_MPAGE')]").should("be.visible",{timeout:5000}).click({ force: true });
-        cy.xpath("(//span[contains(.,'Personas')])[1]").should("be.visible",{timeout:5000}).click({ force: true });
-        cy.xpath("//span[@class='sidebar-nav-item'][contains(.,'Administración de Personas')]").should("be.visible",{timeout:5000}).click({ force: true });
+        cy.get('#MENUTOGGLE_MPAGE').should("be.visible").click({ force: true });
+        cy.get('span.sidebar-nav-item').should("be.visible").contains('Personas').click({ force: true });          
+        cy.get('span.sidebar-nav-item').should("be.visible").contains('Administración de Personas').click({ force: true });          
         cy.get('#PGMDESCRIPTORTEXTBLOCK').should('be.visible').contains('Administración de Personas')
-        cy.wait(tiempo)
         cy.get('.K2BT_TagsCollectionEmptyMessage').should('be.visible').contains('No hay filtros aplicados')
-        cy.wait(tiempo)
+        cy.get('#INSERTP').should('be.visible')
+        cy.get('#INSERTJ').should('be.visible')
+        cy.get('span').should('be.visible').contains('CUIT')
+        cy.get('span').should('be.visible').contains('Documento')
+        cy.get('span').should('be.visible').contains('Apellido')
+        cy.get('span').should('be.visible').contains('Nombre')
+        cy.get('span').should('be.visible').contains('Fecha de Nacimiento')
+        cy.get('span').should('be.visible').contains('Fecha de Fallecimiento')
+        cy.get('span').should('be.visible').contains('Género')
+        cy.get('span').should('be.visible').contains('Tipo Personeria')
+        cy.get('span').should('be.visible').contains('Fecha de Inicio')
+        cy.get('span').should('be.visible').contains('Fecha de Fin')
+        cy.get('#vK2BTOOLSGENERICSEARCHFIELD').should("be.visible",{timeout:5000}).type(cuit);
+        cy.get('#vVER_0001').should('exist').click({ force: true })
+        cy.get('#Tab_TABS_TABSCONTROLContainerpanel1').should("be.visible").click({ force: true });
+        cy.get('#GRIDTITLE_GRID').should("be.visible"),
+        cy.get('#Tab_TABS_TABSCONTROLContainerpanel2').should("be.visible").click({ force: true });
+        cy.get('#GRIDTITLE_GRID1').should("be.visible"),
+        cy.get('#Tab_TABS_TABSCONTROLContainerpanel3').should("be.visible").click({ force: true });
+        cy.get('#GRIDTITLE_GRID2').should("be.visible"),
+        cy.get('#Tab_TABS_TABSCONTROLContainerpanel4').should("be.visible").click({ force: true });
+        cy.get('#GRIDTITLE_GRID3').should("be.visible"),
+            
+        cy.get('#USERINITIALSTEXTBLOCKSMALL_MPAGE').should('be.visible').click({force: true})
+        cy.get('#SIGNOUT_MPAGE').should('be.visible').click({force: true})
+        
+
+
+
+
+
+
+
+        
+
+        //cy.xpath("(//span[contains(.,'Personas')])[1]").should("be.visible",{timeout:5000}).click({ force: true });
+        //cy.xpath("//span[@class='sidebar-nav-item'][contains(.,'Administración de Personas')]").should("be.visible",{timeout:5000}).click({ force: true });
+        //cy.get('#PGMDESCRIPTORTEXTBLOCK').should('be.visible').contains('Administración de Personas')
+        //cy.wait(tiempo)
+        //cy.get('.K2BT_TagsCollectionEmptyMessage').should('be.visible').contains('No hay filtros aplicados')
+        /* cy.wait(tiempo)
         cy.get('#INSERTP').should('be.visible')
         cy.wait(tiempo)
         cy.get('#INSERTJ').should('be.visible')
@@ -56,32 +99,31 @@ class ProyectoDos_Po{
         cy.xpath("(//span[contains(.,'Fecha de Inicio')])[2]").should('be.visible').contains('Fecha de Inicio')
         cy.wait(tiempo)
         cy.xpath("(//span[contains(.,'Fecha de Fin')])[2]").should('be.visible').contains('Fecha de Fin')
-        cy.wait(tiempo)
+        cy.wait(tiempo) */
 
         // Esperar a que cargue la nueva página
-        cy.wait(tiempo);
+        //cy.wait(tiempo);
 
         // Búsqueda de una persona
-        cy.xpath("//input[contains(@id,'vK2BTOOLSGENERICSEARCHFIELD')]").should("be.visible",{timeout:5000}).type(cuit);
-        cy.wait(tiempo);
-        cy.xpath("//img[contains(@alt,'Ver')]").should('exist').click({ force: true })
+        //cy.get('#vK2BTOOLSGENERICSEARCHFIELD').should("be.visible",{timeout:5000}).type(cuit);
+        //cy.xpath("//img[contains(@alt,'Ver')]").should('exist').click({ force: true })
 
         // Navegación por las pestañas
-        cy.get('#Tab_TABS_TABSCONTROLContainerpanel1').should("be.visible",{timeout:5000}).click({ force: true });
-        cy.get('#GRIDTITLE_GRID').should("be.visible"),
-        cy.get('#Tab_TABS_TABSCONTROLContainerpanel2').should("be.visible",{timeout:5000}).click({ force: true });
-        cy.get('#GRIDTITLE_GRID1').should("be.visible"),
-        cy.get('#Tab_TABS_TABSCONTROLContainerpanel3').should("be.visible",{timeout:5000}).click({ force: true });
-        cy.get('#GRIDTITLE_GRID2').should("be.visible"),
-        cy.get('#Tab_TABS_TABSCONTROLContainerpanel4').should("be.visible",{timeout:5000}).click({ force: true });
-        cy.get('#GRIDTITLE_GRID3').should("be.visible"),    
+        //cy.get('#Tab_TABS_TABSCONTROLContainerpanel1').should("be.visible",{timeout:5000}).click({ force: true });
+        //cy.get('#GRIDTITLE_GRID').should("be.visible"),
+        //cy.get('#Tab_TABS_TABSCONTROLContainerpanel2').should("be.visible",{timeout:5000}).click({ force: true });
+        //cy.get('#GRIDTITLE_GRID1').should("be.visible"),
+        //cy.get('#Tab_TABS_TABSCONTROLContainerpanel3').should("be.visible",{timeout:5000}).click({ force: true });
+        //cy.get('#GRIDTITLE_GRID2').should("be.visible"),
+        //cy.get('#Tab_TABS_TABSCONTROLContainerpanel4').should("be.visible",{timeout:5000}).click({ force: true });
+       //cy.get('#GRIDTITLE_GRID3').should("be.visible"),    
     
-        cy.wait(tiempo);
+        //cy.wait(tiempo);
     
-        cy.xpath("//a[@href='#'][contains(.,'AU')]").should('be.visible').click({force: true})
-        cy.wait(tiempo)
-        cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible').click({force: true})
-        cy.wait(tiempo)
+        //cy.xpath("//a[@href='#'][contains(.,'AU')]").should('be.visible').click({force: true})
+        //cy.wait(tiempo)
+        //cy.xpath("//a[@href='#'][contains(.,'Salir')]").should('be.visible').click({force: true})
+        //cy.wait(tiempo)
         
         
       }
