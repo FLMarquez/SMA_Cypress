@@ -4,7 +4,6 @@ pipeline {
     tools { nodejs "node" }
 
     stages {
-
         stage('Cypress Parallel Test Suite') {
             parallel {
                 stage('Slave 1') {
@@ -16,7 +15,8 @@ pipeline {
                         bat 'npm install'
                         bat 'npm update'
                         bat 'mkdir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\cypress\\downloads || echo "Directory already exists"'
-                        bat 'npx cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
+                        // Ejecución en Firefox
+                        bat 'npx cypress run --browser firefox --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
                     }
                 }
 
@@ -29,7 +29,8 @@ pipeline {
                         bat 'npm install'
                         bat 'npm update'
                         bat 'mkdir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\SMA_Cypress\\cypress\\downloads || echo "Directory already exists"'
-                        bat 'npx cypress run --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
+                        // Ejecución en Firefox
+                        bat 'npx cypress run --browser firefox --record --key cce1f910-2985-4f1a-a70e-9b6c6a5cc497 --parallel'
                     }
                 }
             }
