@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.13.3",
+    "cypress": "^13.14.2",
     "cypress-downloadfile": "^1.2.4",
     "cypress-iframe": "^1.0.1",
     "cypress-markdown-preprocessor": "^1.10.13",

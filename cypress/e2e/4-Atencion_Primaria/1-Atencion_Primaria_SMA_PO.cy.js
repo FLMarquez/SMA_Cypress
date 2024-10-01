@@ -24,7 +24,7 @@ describe('Atencio_Primaria_SMA', () => {
 
 it('Usuario y Contraseña Válido', () => {        
     master.SeccionUno("admin","admin123",1000) 
-    master.SeccionDos("ZZZ111",1000)   
+    master.SeccionDos("AAA999",1000)   
        
 });
 
